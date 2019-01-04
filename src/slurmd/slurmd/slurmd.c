@@ -2185,6 +2185,9 @@ static bool _is_core_spec_cray(void)
  */
 static int _core_spec_init(void)
 {
+#if defined(__APPLE__)
+	fatal("%s: not supported on macOS", __func__);
+#else
 	int i, rval;
 	pid_t pid;
 	uint32_t task_params;
@@ -2306,6 +2309,7 @@ static int _core_spec_init(void)
 	_resource_spec_fini();
 
 	return SLURM_SUCCESS;
+#endif
 }
 
 /*
