@@ -373,6 +373,14 @@ static void _do_power_work(time_t now)
 			bit_set(booting_node_bitmap, i);
 			bit_set(resume_node_bitmap,  i);
 			bit_set(wake_node_bitmap,    i);
+
+			if (IS_NODE_CLOUD(node_ptr) &&
+			    xstrcasestr(slurmctld_conf.slurmctld_params,
+					"cloud_dns")) {
+				slurm_reset_alias(node_ptr->name,
+						  node_ptr->comm_name,
+						  node_ptr->node_hostname);
+			}
 		}
 
 		/* Suspend nodes as appropriate */

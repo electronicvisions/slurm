@@ -2664,7 +2664,6 @@ extern int validate_node_specs(slurm_node_registration_status_msg_t *reg_msg,
 	    IS_NODE_POWER_UP(node_ptr) ||
 	    IS_NODE_POWER_SAVE(node_ptr)) {
 		info("Node %s now responding", node_ptr->name);
-
 		/*
 		 * Set last_idle in case that the node came up out of band or
 		 * came up after ResumeTimeout so that it can be suspended at a
